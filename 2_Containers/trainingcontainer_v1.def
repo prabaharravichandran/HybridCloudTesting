@@ -1,0 +1,64 @@
+BootStrap: docker
+From: nvidia/cuda:12.5.0-devel-ubuntu22.04
+
+%files
+    # Copy the requirements file inside the container
+    /gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/4_Assets/Singularity/TrainingContainers/requirements.txt /Script/requirements.txt
+
+%post
+    # Prevent tzdata from prompting
+    export DEBIAN_FRONTEND=noninteractive
+    ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+    echo "Etc/UTC" > /etc/timezone
+
+    # Update package list and install prerequisites
+    apt-get update && apt-get install -y \
+        software-properties-common \
+        wget git build-essential \
+        tzdata \
+        libgl1-mesa-glx libglib2.0-0 \
+        libcurl4 \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    # Add deadsnakes PPA for Python 3.12
+    add-apt-repository ppa:deadsnakes/ppa -y
+    apt-get update && apt-get install -y \
+        python3.12 python3.12-venv python3.12-dev python3-pip \
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+    # Set Python 3.12 as the default
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+    update-alternatives --set python3 /usr/bin/python3.12
+
+    # Create a virtual environment (recommended to isolate dependencies)
+    mkdir -p /app
+    python3 -m venv /app/venv
+
+    # Ensure correct permissions for virtual environment
+    chmod -R 755 /app/venv
+
+    # Upgrade pip inside the virtual environment
+    /app/venv/bin/python3 -m pip install --upgrade pip setuptools wheel
+
+    # Install Python dependencies inside the virtual environment
+    /app/venv/bin/python3 -m pip install --no-cache-dir -r /Script/requirements.txt
+
+%environment
+    # Set environment variables for Python and CUDA
+    export PATH=/app/venv/bin:$PATH
+    export PYTHONPATH=/app/venv/lib/python3.9/site-packages:$PYTHONPATH
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+    export CUDA_HOME=/usr/local/cuda
+    export TF_FORCE_GPU_ALLOW_GROWTH=true
+
+    # Ensure virtual environment is activated
+    export VIRTUAL_ENV=/app/venv
+    export PATH="$VIRTUAL_ENV/bin:$PATH"
+
+%runscript
+    # Ensure virtual environment is used when running the container
+    export PATH=/app/venv/bin:$PATH
+    export PYTHONPATH=/app/venv/lib/python3.12/site-packages:$PYTHONPATH
+
+    # Run the provided command inside the virtual environment
+    exec python3 "$@"
