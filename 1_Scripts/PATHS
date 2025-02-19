@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Export the MongoDB paths
+export PATH="/home/prr000/Documents/MongoDB/Compass/bin:$PATH"
+export PATH="/home/prr000/Documents/MongoDB/Daemon/usr/bin:$PATH"
+export PATH="/home/prr000/Documents/MongoDB/Shell/usr/bin:$PATH"
+export PATH="/home/prr000/Documents/MongoDB/Tools/bin:$PATH"
+
+
+mongod --fork --config /home/prr000/Documents/Projects/Training/1_Scripts/mongod.config
+
+echo "MongoDB started successfully."
