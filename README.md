@@ -51,6 +51,23 @@ sbatch -p <partition> <jobscript>
 # list partition - Check instances.sinfo
 sinfo 
 ```
+# Compute Node Specifications
+
+| Partition               | Instance Type  | vCPUs | Memory  | GPU                                    | Storage  | Networking   | Use Cases |
+|-------------------------|---------------|-------|---------|----------------------------------------|----------|-------------|-----------|
+| compute-g5-xlarge      | g5.xlarge      | 4     | 16 GiB  | 1 NVIDIA A10G (24 GiB)                 | EBS-only | Up to 10 Gbps | ML Inference, Graphics |
+| compute-g6-xlarge      | g6.xlarge      | 4     | 16 GiB  | 1 NVIDIA A10G (24 GiB)                 | EBS-only | Up to 10 Gbps | ML Inference, Graphics |
+| compute-m6i-large      | m6i.large      | 2     | 8 GiB   | None                                   | EBS-only | Up to 12.5 Gbps | General-purpose |
+| compute-t3-2xlarge     | t3.2xlarge     | 8     | 32 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+| compute-t3-large       | t3.large       | 2     | 8 GiB   | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+| compute-t3-xlarge      | t3.xlarge      | 4     | 16 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+| scompute-g5-xlarge     | g5.xlarge      | 4     | 16 GiB  | 1 NVIDIA A10G (24 GiB)                 | EBS-only | Up to 10 Gbps | ML Inference, Graphics |
+| scompute-g6-xlarge     | g6.xlarge      | 4     | 16 GiB  | 1 NVIDIA A10G (24 GiB)                 | EBS-only | Up to 10 Gbps | ML Inference, Graphics |
+| scompute-m6i-large     | m6i.large      | 2     | 8 GiB   | None                                   | EBS-only | Up to 12.5 Gbps | General-purpose |
+| scompute-t3-2xlarge    | t3.2xlarge     | 8     | 32 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+| scompute-t3-large      | t3.large       | 2     | 8 GiB   | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+| scompute-t3-xlarge     | t3.xlarge      | 4     | 16 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
+
 
 
 
