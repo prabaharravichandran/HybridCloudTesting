@@ -17,6 +17,24 @@ apptainer build trainingcontainer_v1.sif trainingcontainer_v1_sandbox
 
 ## MongoDB tools and applications
 
+### Preparing a new filtered DB
+Check out...
+```
+/home/prr000/Documents/Projects/Training/3_MongoDB/PrepareDB4Dump.py
+```
+
+### Preparing mongodump
+
+```bash
+mongodump \
+  --host localhost \
+  --port 27018 \
+  --db Data4AWS \
+  --username 'username' \
+  --password 'password' \
+  --authenticationDatabase admin
+```
+
 ```bash
 export PATH="/home/prr000/Documents/MongoDB/Compass/bin:$PATH"
 export PATH="/home/prr000/Documents/MongoDB/Daemon/usr/bin:$PATH"
