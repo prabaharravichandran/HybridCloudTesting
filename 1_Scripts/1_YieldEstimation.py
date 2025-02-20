@@ -56,7 +56,7 @@ else:
 # Path to the MongoDB config and log files
 MONGO_CONFIG = "/home/prr000/Documents/Projects/Training/1_Scripts/mongod.config"
 MONGO_LOG = os.path.expanduser("~/mongod.log")
-OUTPUT_PATH = "/home/prr000/Documents/Projects/Training/3_Output/"
+OUTPUT_PATH = "/4_Output/"
 
 # Set a fixed random seed for reproducibility
 SEED = 42

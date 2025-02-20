@@ -34,6 +34,22 @@ mongodump \
   --password 'password' \
   --authenticationDatabase admin
 ```
+archive dump
+```bash
+tar -xzvf dump.tar.gz dump
+```
+transfer dump
+```
+rsync --progress --stats --checksum -e "ssh -i /home/prr000/.ssh/hybridcloud2025_GPSC" dump.tar.gz 3.98.237.27:~/Desktop/
+```
+extract dump
+```bash
+tar -tzvf dump.tar.gz
+```
+restore dump/db
+```bash
+mongorestore --port 27018 -u "username" -p "password" --authenticationDatabase "admin" ~/Desktop/dump
+```
 
 ```bash
 export PATH="/home/prr000/Documents/MongoDB/Compass/bin:$PATH"
