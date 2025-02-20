@@ -1,0 +1,13 @@
+PARTITION           AVAIL  TIMELIMIT  NODES  STATE NODELIST
+compute-g5-xlarge      up    3:00:00      2  idle~ compute-g5-xlarge-[000-001]
+compute-g6-xlarge      up    3:00:00      2  idle~ compute-g6-xlarge-[000-001]
+compute-m6i-large      up      30:00      2  idle~ compute-m6i-large-[000-001]
+compute-t3-2xlarge     up    1:00:00      3  idle~ compute-t3-2xlarge-[000-002]
+compute-t3-large       up    1:00:00      3  idle~ compute-t3-large-[000-002]
+compute-t3-xlarge      up    1:00:00      3  idle~ compute-t3-xlarge-[000-002]
+scompute-g5-xlarge     up    3:00:00      2  idle~ scompute-g5-xlarge-[000-001]
+scompute-g6-xlarge     up    3:00:00      2  idle~ scompute-g6-xlarge-[000-001]
+scompute-m6i-large     up      30:00      2  idle~ scompute-m6i-large-[000-001]
+scompute-t3-2xlarge    up    1:00:00      3  idle~ scompute-t3-2xlarge-[000-002]
+scompute-t3-large*     up    1:00:00      3  idle~ scompute-t3-large-[000-002]
+scompute-t3-xlarge     up    1:00:00      3  idle~ scompute-t3-xlarge-[000-002]
