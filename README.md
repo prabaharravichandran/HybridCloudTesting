@@ -41,3 +41,17 @@ apptainer shell --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb t
 ```bash
 mongorestore --host localhost --port 27018 --username '<username>' --password '<password>'' --authenticationDatabase admin --db Data4AWS .
 ```
+
+# Working with SLURM
+
+```bash
+srun -p compute-g5-xlarge --pty bash -i
+sbatch -p <partition> <jobscript>
+
+# list partition - Check instances.sinfo
+sinfo 
+```
+
+
+
+
