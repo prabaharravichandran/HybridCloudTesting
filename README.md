@@ -36,6 +36,8 @@ mongod --fork --config /home/prr000/mongod.config
 apptainer shell --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb trainingcontainer_v1_sandbox
 ```
 
-# Restore Mongodump
+## Mongorestore
 
+```bash
 mongorestore --host localhost --port 27018 --username '<username>' --password '<password>'' --authenticationDatabase admin --db Data4AWS .
+```
