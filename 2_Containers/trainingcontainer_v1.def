@@ -3,9 +3,20 @@ From: nvidia/cuda:12.5.0-devel-ubuntu22.04
 
 %files
     /gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/4_Assets/Singularity/TrainingContainers/requirements.txt /Script/requirements.txt
+    /gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/4_Assets/Singularity/TrainingContainers/prr000 /home
 
 %post
+    # Ensure non-interactive mode
     export DEBIAN_FRONTEND=noninteractive
+
+    # Create necessary directories in root
+    mkdir -p /fs /space /gpfs /mnt/mongodb
+
+    # Set proper permissions (optional)
+    chmod 755 /fs /space /gpfs /mnt/mongodb
+
+    echo "Directories created successfully in /, /fs, /space, /gpfs, and /mnt/mongodb"
+
     ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
     echo "Etc/UTC" > /etc/timezone
 

@@ -35,6 +35,16 @@ mongod --fork --config /home/prr000/mongod.config
 ```bash
 apptainer shell --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb trainingcontainer_v1_sandbox
 ```
+To contain everything to the sandbox or .sif
+
+```bash
+apptainer shell \
+  --writable \
+  --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb \
+  --contain \
+  --no-home \
+  trainingcontainer_v1_sandbox
+```
 
 ## Mongorestore
 
