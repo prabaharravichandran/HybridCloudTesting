@@ -90,13 +90,12 @@ def start_mongod():
         process = subprocess.Popen(
             [
                 "/bin/bash", "-c",
-                f'source ~/.bashrc && '
                 f'mongod --fork --config {MONGO_CONFIG}'
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
-        time.sleep(5)  # Wait for MongoDB to initialize
+        time.sleep(10)  # Wait for MongoDB to initialize
         pid = is_mongod_running()
         if pid:
             print(f"MongoDB started successfully with PID: {pid}")
@@ -139,7 +138,7 @@ def monitor_mongod():
         if not is_mongod_running():
             print("MongoDB is not running! Restarting...")
             start_mongod()
-        time.sleep(5)  # Check every 5 seconds
+        time.sleep(10)  # Check every 10 seconds
     print("Monitoring thread stopped.")
 
 
@@ -158,9 +157,9 @@ username = quote_plus(config['mongodb_username'])
 password = quote_plus(config['mongodb_password'])
 uri = f"mongodb://{username}:{password}@localhost:27018/"
 client = pymongo.MongoClient(uri)
-db = client["UFPS"]
+db = client["Data4AWS"]
 fs = GridFS(db)
-collection = db["Data"]
+collection = db["2024"]
 
 # Trigger server selection to check if connection is successful
 print("Attempting to ping the MongoDB server...")

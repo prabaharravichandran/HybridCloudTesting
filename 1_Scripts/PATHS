@@ -7,6 +7,6 @@ export PATH="/home/prr000/Documents/MongoDB/Shell/usr/bin:$PATH"
 export PATH="/home/prr000/Documents/MongoDB/Tools/bin:$PATH"
 
 
-mongod --fork --config /home/prr000/Documents/Projects/Training/1_Scripts/mongod.config
+mongod --fork --config /home/prr000/mongod.config
 
 echo "MongoDB started successfully."
