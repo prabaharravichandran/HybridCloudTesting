@@ -26,6 +26,7 @@ Check out...
 ```
 
 ### Preparing mongodump
+Mongodump is not working as expected. 
 
 ```bash
 mongodump \
@@ -43,6 +44,7 @@ tar -xzvf dump.tar.gz dump
 transfer dump
 ```
 rsync --recursive --progress --stats --checksum -e "ssh -i /home/prr000/.ssh/hybridcloud2025_GPSC" dump/ 3.98.237.27:/fs/phenocart-work/prr000/dump
+rsync --progress --stats --checksum -e "ssh -i /home/prr000/.ssh/hybridcloud2025_GPSC" ExtractedData.tar.gz 3.98.237.27:/fs/phenocart-work/prr000
 ```
 extract dump
 ```bash
