@@ -2,7 +2,10 @@
 
 2024 - 2025 Annual Progress Meeting: https://xd.adobe.com/view/8b5255ab-b37b-4aff-8341-a37f998aab88-de01/?fullscreen
 
-<img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="3000">
+<div align="center">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="600">
+  <p><i>Figure 1: UFPS that includes RTK base station and wheeled robot controlled by remote controller.</i></p>
+</div>
 
 ## Creating and building apptainers for testing
 
