@@ -150,7 +150,7 @@ monitor_thread = threading.Thread(target=monitor_mongod, daemon=True)
 monitor_thread.start()
 
 # %% Database Access
-with open('/home/prr000/Documents/Projects/Training/1_Scripts/config.json') as config_file:
+with open('/home/prr000/Documents/Projects/Training/1_Scripts/prr000/config.json') as config_file:
     config = json.load(config_file)
 
 username = quote_plus(config['mongodb_username'])

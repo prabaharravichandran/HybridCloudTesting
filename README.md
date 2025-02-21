@@ -2,6 +2,8 @@
 
 2024 - 2025 Annual Progress Meeting: https://xd.adobe.com/view/8b5255ab-b37b-4aff-8341-a37f998aab88-de01/?fullscreen
 
+<img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="3000">
+
 ## Creating and building apptainers for testing
 
 Defs, makefile and bash scripts for creating containers are located here /home/prr000/Documents/Projects/Training/2_Containers/
@@ -34,13 +36,13 @@ mongodump \
   --password 'password' \
   --authenticationDatabase admin
 ```
-archive dump
+archive dump # not required, but still
 ```bash
 tar -xzvf dump.tar.gz dump
 ```
 transfer dump
 ```
-rsync --progress --stats --checksum -e "ssh -i /home/prr000/.ssh/hybridcloud2025_GPSC" dump.tar.gz 3.98.237.27:~/Desktop/
+rsync --recursive --progress --stats --checksum -e "ssh -i /home/prr000/.ssh/hybridcloud2025_GPSC" dump/ 3.98.237.27:/fs/phenocart-work/prr000/dump
 ```
 extract dump
 ```bash
