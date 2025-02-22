@@ -3,7 +3,7 @@
 2024 - 2025 Annual Progress Meeting: https://xd.adobe.com/view/8b5255ab-b37b-4aff-8341-a37f998aab88-de01/?fullscreen
 
 <div align="center">
-  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="600">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="3000">
   <p><i>Figure 1: UFPS that includes RTK base station and wheeled robot controlled by remote controller.</i></p>
 </div>
 
@@ -81,7 +81,7 @@ To contain everything to the sandbox or .sif
 ```bash
 apptainer shell \
   --writable \
-  --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb \
+  --bind /fs/phenocart-work/prr000/MongoDBData:/mnt \
   --contain \
   --no-home \
   trainingcontainer_v1_sandbox

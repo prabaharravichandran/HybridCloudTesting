@@ -54,7 +54,7 @@ else:
     print("No GPU detected.")
 
 # Path to the MongoDB config and log files
-MONGO_CONFIG = "/home/prr000/Documents/Projects/Training/1_Scripts/mongod.config"
+MONGO_CONFIG = "/home/prr000/mongod.config"
 MONGO_LOG = os.path.expanduser("~/mongod.log")
 OUTPUT_PATH = "/4_Output/"
 
@@ -82,7 +82,6 @@ def is_mongod_running():
             return proc.info['pid']
     return None
 
-
 def start_mongod():
     """Start mongod if not already running."""
     if not is_mongod_running():
@@ -95,13 +94,12 @@ def start_mongod():
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
-        time.sleep(10)  # Wait for MongoDB to initialize
+        time.sleep(5)  # Wait for MongoDB to initialize
         pid = is_mongod_running()
         if pid:
             print(f"MongoDB started successfully with PID: {pid}")
         else:
             print("Failed to start MongoDB. Check logs for details.")
-
 
 def stop_mongod():
     """Gracefully stop mongod if running."""
@@ -130,7 +128,6 @@ def stop_mongod():
 
     print("All 'mongod' processes terminated.")
 
-
 def monitor_mongod():
     """Monitor MongoDB and restart if it stops."""
     global stop_monitoring
@@ -141,7 +138,6 @@ def monitor_mongod():
         time.sleep(10)  # Check every 10 seconds
     print("Monitoring thread stopped.")
 
-
 # Start MongoDB before monitoring
 start_mongod()
 
@@ -150,12 +146,12 @@ monitor_thread = threading.Thread(target=monitor_mongod, daemon=True)
 monitor_thread.start()
 
 # %% Database Access
-with open('/home/prr000/Documents/Projects/Training/1_Scripts/prr000/config.json') as config_file:
+with open('/home/prr000/config.json') as config_file:
     config = json.load(config_file)
 
 username = quote_plus(config['mongodb_username'])
 password = quote_plus(config['mongodb_password'])
-uri = f"mongodb://{username}:{password}@localhost:27018/"
+uri = f"mongodb://{username}:{password}@localhost:27020/"
 client = pymongo.MongoClient(uri)
 db = client["Data4AWS"]
 fs = GridFS(db)
@@ -168,7 +164,6 @@ print("Ping to MongoDB server successful.")
 
 # %% Extract data from documents
 img_rows, img_cols = int(2048 / 4), int(2448 / 4)
-
 
 # Projection function
 def projection3x(lidar_raw):
@@ -458,9 +453,7 @@ try:
         ]
     }
 
-    # criteria = {}
-
-    documents = list(collection.find(criteria))
+    documents = list(collection.find(criteria).limit(100))
 
     # Shuffle the documents
     random.shuffle(documents)
@@ -594,14 +587,14 @@ try:
     print("Yield:", np.isnan(y_yield).any() or np.isinf(y_yield).any())
 
     # distribution:
-    print_distribution(y_flowering, "Flowering Days")
-    print_distribution(y_maturity, "Maturity Days")
-    print_distribution(y_yield, "Yield")
+    #print_distribution(y_flowering, "Flowering Days")
+    #print_distribution(y_maturity, "Maturity Days")
+    #print_distribution(y_yield, "Yield")
 
     # Save histograms as SVG files
-    plot_histogram(y_flowering, "Flowering (Days)", filename=f"{OUTPUT_PATH}flowering_histogram.svg")
-    plot_histogram(y_maturity, "Maturity (Days)", filename=f"{OUTPUT_PATH}maturity_histogram.svg")
-    plot_histogram(y_yield, "Yield (tonne/ha)", filename=f"{OUTPUT_PATH}yield_histogram.svg")
+    #plot_histogram(y_flowering, "Flowering (Days)", filename=f"{OUTPUT_PATH}flowering_histogram.svg")
+    #plot_histogram(y_maturity, "Maturity (Days)", filename=f"{OUTPUT_PATH}maturity_histogram.svg")
+    #plot_histogram(y_yield, "Yield (tonne/ha)", filename=f"{OUTPUT_PATH}yield_histogram.svg")
 
 # %% STOP MongoDB
 finally:
@@ -900,17 +893,6 @@ with strategy.scope():
 
 model.summary()
 
-from tensorflow.keras.utils import plot_model
-
-# Plot model
-plot_model(model,
-           to_file='/gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/2_RGB/FloweringandMaturity/Output/yield_plot_attn.png',
-           show_shapes=True,
-           show_layer_names=True,
-           rankdir='TD',  # Change layout to left-to-right
-           dpi=150
-           )
-
 # Set up early stopping
 early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=25, restore_best_weights=True)
 
@@ -1060,7 +1042,7 @@ for repetition in range(1, 51):
     if R2_yield > best_r2_yield or RMSE_yield < best_rmse_yield:
         best_r2_yield = R2_yield
         best_rmse_yield = RMSE_yield
-        best_model_path_yield = '/gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/2_RGB/FloweringandMaturity/Output/best_model_for_yield_attn.h5'
+        best_model_path_yield = 'mnt/Output/best_model_for_yield_attn.h5'
         model.save(best_model_path_yield)  # Save the best model for flowering
         print(f"New best yield model saved with R²: {R2_yield:.2f}, RMSE: {RMSE_yield:.2f}")
 
@@ -1081,7 +1063,7 @@ for repetition in range(1, 51):
     # Save results to an Excel file
     results_df = pd.DataFrame(results)
     results_file_path = (
-        '/gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/2_RGB/FloweringandMaturity/Output/Yield_attn.xlsx')
+        'mnt/Output/Yield_attn.xlsx')
     results_df.to_excel(results_file_path, index=False)
     print(f"Results saved to {results_file_path}")
 

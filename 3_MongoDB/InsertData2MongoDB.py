@@ -20,14 +20,13 @@ import subprocess
 from tqdm import tqdm
 
 # Path to the MongoDB config and log files
-ACCESSJSON = '/gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/5_Data/MongoDB/config.json'
-DB = "NewPhenocartDB"
-COLLECTION = "PhenotypingData"
-MONGO_CONFIG = "/gpfs/fs7/aafc/phenocart/IDEs/MongoDB/mongod.conf"
+ACCESSJSON = '/home/prr000/Documents/Projects/Training/1_Scripts/prr000/config.json'
+DB = "Data4AWS"
+COLLECTION = "2024"
+MONGO_CONFIG = "/home/prr000/Documents/Projects/Training/1_Scripts/prr000/mongod.config"
 MONGO_LOG = os.path.expanduser("~/mongod.log")
-OUTPUT_PATH = "/gpfs/fs7/aafc/phenocart/PhenomicsProjects/UFPSGPSCProject/2_RGB/FloweringandMaturity/Output/"
 # Path where extracted folders are stored
-BASE_FOLDER = "/gpfs/fs7/aafc/phenocart/IDEs/MongoDB/Extracted_Data"
+BASE_FOLDER = "/fs/phenocart-work/prr000/Extracted_Data"
 
 stop_monitoring = False  # Flag to stop the monitoring thread
 
@@ -45,13 +44,13 @@ def start_mongod():
         process = subprocess.Popen(
             [
                 "/bin/bash", "-c",
-                f'export PATH="/gpfs/fs7/aafc/phenocart/IDEs/MongoDB/bin/:$PATH" && '
-                f'mongod --fork --logpath {MONGO_LOG} --config {MONGO_CONFIG}'
+                f'export PATH="/home/prr000/Documents/MongoDB/Daemon/usr/bin/:$PATH" && '
+                f'mongod --fork --config {MONGO_CONFIG}'
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
-        time.sleep(5)  # Wait for MongoDB to initialize
+        time.sleep(15)  # Wait for MongoDB to initialize
         pid = is_mongod_running()
         if pid:
             print(f"MongoDB started successfully with PID: {pid}")
