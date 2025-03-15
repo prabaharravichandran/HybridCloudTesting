@@ -54,7 +54,7 @@ else:
     print("No GPU detected.")
 
 # Path to the MongoDB config and log files
-MONGO_CONFIG = "/home/prr000/mongod.config"
+MONGO_CONFIG = "/home/prr000/Documents/Projects/Training/2_Containers/mongod.config"
 MONGO_LOG = os.path.expanduser("~/mongod.log")
 OUTPUT_PATH = "/4_Output/"
 
@@ -89,6 +89,7 @@ def start_mongod():
         process = subprocess.Popen(
             [
                 "/bin/bash", "-c",
+                'export PATH="/home/prr000/Documents/MongoDB/Daemon/usr/bin:$PATH"',
                 f'mongod --fork --config {MONGO_CONFIG}'
             ],
             stdout=subprocess.PIPE,
@@ -146,12 +147,12 @@ monitor_thread = threading.Thread(target=monitor_mongod, daemon=True)
 monitor_thread.start()
 
 # %% Database Access
-with open('/home/prr000/config.json') as config_file:
+with open('/home/prr000/Documents/Projects/Training/2_Containers/config.json') as config_file:
     config = json.load(config_file)
 
 username = quote_plus(config['mongodb_username'])
 password = quote_plus(config['mongodb_password'])
-uri = f"mongodb://{username}:{password}@localhost:27020/"
+uri = f"mongodb://{username}:{password}@localhost:27018/"
 client = pymongo.MongoClient(uri)
 db = client["Data4AWS"]
 fs = GridFS(db)
