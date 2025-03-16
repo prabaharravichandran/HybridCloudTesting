@@ -1,6 +1,6 @@
-# University of Saskatchewan Field Phenotying System (UFPS) / Phenocart Data Management & Pipeline Development
+# Testing hybrid cloud with phenomics data from UGVs
 
-2024 - 2025 Annual Progress Meeting: https://xd.adobe.com/view/8b5255ab-b37b-4aff-8341-a37f998aab88-de01/?fullscreen
+We test a hybrid cloud architecture for processing and analyzing phenomics data collected from UFPS uncrewed ground vehicles (UGVs). It combines containerized applications—built using Apptainer based on an NVIDIA CUDA development image—with a MongoDB-based data pipeline for filtering, transferring, and restoring data. In addition, the system leverages AWS HPC clusters managed by SLURM, using specialized GPU-enabled nodes.
 
 <div align="center">
   <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/Phenocart.jpg" alt="Phenocart" width="3000">
@@ -9,15 +9,37 @@
 
 ## Creating and building apptainers for testing
 
-Defs, makefile and bash scripts for creating containers are located here /home/prr000/Documents/Projects/Training/2_Containers/
-Based on nvidia/cuda:12.5.0-devel-ubuntu22.04 image
+Defs, makefile and bash scripts for creating containers are located here, 2_Containers/
 
---fakeroot --sandbox essential
+Based on ubuntu24.04 image; we'll install nvidia-cuda-tool, mongodb, python 2.18, tensorflow 2.18 along with all the other dependencies.
+
+for mongodb, opencv(need some dependencies when installed over ubuntu 24.04), and nvidia toolkit
+```text
+apt-get install gnupg curl
+curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
+   gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
+   --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+apt-get update
+apt-get install -y mongodb-org
+
+for opencv
+apt-get update
+apt-get install -y libgl1-mesa-glx
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+apt-get update
+
+apt install nvidia-cuda-toolkit
+```
+
+--sandbox essential
 
 Build .sifs later, if required
 
 ```bash
-apptainer build trainingcontainer_v1.sif trainingcontainer_v1_sandbox
+apptainer build trainingcontainer.sif trainingcontainer_sandbox
 ```
 
 ## MongoDB tools and applications
@@ -59,32 +81,39 @@ mongorestore --port 27018 -u "username" -p "password" --authenticationDatabase "
 ```
 
 ```bash
-export PATH="/home/prr000/Documents/MongoDB/Compass/bin:$PATH"
-export PATH="/home/prr000/Documents/MongoDB/Daemon/usr/bin:$PATH"
-export PATH="/home/prr000/Documents/MongoDB/Shell/usr/bin:$PATH"
-export PATH="/home/prr000/Documents/MongoDB/Tools/bin:$PATH"
+export PATH="/fs/phenocart-app/prr000/MongoDB/Compass/bin:$PATH"
+export PATH="/fs/phenocart-app/prr000/MongoDB/Daemon/usr/bin:$PATH"
+export PATH="/fs/phenocart-app/prr000/MongoDB/Shell/usr/bin:$PATH"
+export PATH="/fs/phenocart-app/prr000/MongoDB/Tools/bin:$PATH"
+export PATH="/fs/phenocart-app/prr000/PyCharm/bin:$PATH"
 ```
 
 ## Start MongoDB
 
 ```bash
+# for testing
+mongod --dbpath /mnt/phenocart-work/prr000/MongoDBData/Data --logpath ~/mongo.log --fork
+
+# If everything is good, write a config
 mongod --fork --config /home/prr000/mongod.config
 ```
 
 ## Bind data to apptainer for MongoDB
 
 ```bash
-apptainer shell --bind /fs/phenocart-work/prr000/MongoDBData/Data:/mnt/mongodb trainingcontainer_v1_sandbox
+apptainer shell --bind /fs:/mnt trainingcontainer_sandbox
 ```
 To contain everything to the sandbox or .sif
 
 ```bash
+cd /home/prr000/Documents/Projects/Training/2_Containers
 apptainer shell \
-  --writable \
-  --bind /fs/phenocart-work/prr000/MongoDBData:/mnt \
-  --contain \
-  --no-home \
-  trainingcontainer_v1_sandbox
+   --nv \
+   --fakeroot \
+   --bind /fs:/mnt \
+   --contain \
+   --no-home \
+   trainingcontainer_sandbox/
 ```
 
 ## Mongorestore
@@ -96,7 +125,10 @@ mongorestore --host localhost --port 27018 --username '<username>' --password '<
 # Working with SLURM
 
 ```bash
-srun -p compute-g5-xlarge --pty bash -i
+#Interactive session
+srun -p <partition> --pty bash -i
+
+#Submit job
 sbatch -p <partition> <jobscript>
 
 # list partition - Check instances.sinfo
@@ -118,8 +150,3 @@ sinfo
 | scompute-t3-2xlarge    | t3.2xlarge     | 8     | 32 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
 | scompute-t3-large      | t3.large       | 2     | 8 GiB   | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
 | scompute-t3-xlarge     | t3.xlarge      | 4     | 16 GiB  | None                                   | EBS-only | Up to 5 Gbps | Burstable Performance |
-
-
-
-
-
