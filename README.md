@@ -1,5 +1,7 @@
 # Testing hybrid cloud with phenomics data from UGVs
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 We test a hybrid cloud architecture for processing and analyzing phenomics data collected from UFPS uncrewed ground vehicles (UGVs). It combines containerized applications—built using Apptainer based on an NVIDIA CUDA development image—with a MongoDB-based data pipeline for filtering, transferring, and restoring data. In addition, the system leverages AWS HPC clusters managed by SLURM, using specialized GPU-enabled nodes.
 
 <div align="center">
