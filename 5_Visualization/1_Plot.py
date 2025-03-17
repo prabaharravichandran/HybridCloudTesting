@@ -89,15 +89,22 @@ fig.add_shape(
 fig.update_layout(
     height=900,
     width=1600,
-    title="System & GPU Memory Usage vs. GPU Utilization",
     xaxis_title="Time (min)",
     # Transparent backgrounds
     paper_bgcolor="rgba(0,0,0,0)",  # outer “paper” area
     plot_bgcolor="rgba(0,0,0,0)",   # main plot area
     font=dict(
-        family="Open Sans",  # or "Open Sans, sans-serif" for a fallback
+        family="Open Sans",
         size=24,
         color="black"
+    ),
+    # Legend-specific overrides
+    legend=dict(
+        font=dict(
+            size=16,  # Larger font for legend entries
+            family="Open Sans",
+            color="black"
+        )
     )
 )
 
