@@ -96,16 +96,21 @@ fig.update_layout(
 
 fig.update_xaxes(
     showline=True,
-    linewidth=1,
-    linecolor="lightgray",
-    mirror=True            # Mirrors lines onto the top boundary as well
+    zeroline=True,
+    range=[-1, max_x],
+    zerolinecolor="lightgray",
+    ticklabelposition="outside",  # Add padding to tick labels
+    ticks="outside",
+    ticklen=10,
+    tickcolor="rgba(0, 0, 0, 0)",
+    mirror = True
 )
 
 # Configure left y-axis for memory
 fig.update_yaxes(
     title_text="Memory Used (GB)",
     secondary_y=False,
-    range=[0,100],
+    range=[-1,100],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # or any color you'd like
     zeroline=True,
@@ -121,7 +126,7 @@ fig.update_yaxes(
 fig.update_yaxes(
     title_text="GPU Utilization (%)",
     secondary_y=True,
-    range=[0, 100],
+    range=[-1, 100],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # match color from the other axis
     zeroline=True,
