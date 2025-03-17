@@ -73,6 +73,18 @@ fig.add_trace(trace_gpu_mem, secondary_y=False)
 # Add GPU utilization to the right axis
 fig.add_trace(trace_gpu_util, secondary_y=True)
 
+max_x = df["Time (min)"].max()
+
+fig.add_shape(
+    type="line",
+    x0=max_x,
+    x1=max_x,
+    yref="paper",
+    y0=0,
+    y1=1,
+    line=dict(color="lightgray", width=1)
+)
+
 # Update layout (title, axis labels) and make background transparent
 fig.update_layout(
     title="System & GPU Memory Usage vs. GPU Utilization",
