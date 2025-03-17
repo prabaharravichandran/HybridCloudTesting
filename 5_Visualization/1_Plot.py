@@ -73,27 +73,36 @@ fig.add_trace(trace_gpu_mem, secondary_y=False)
 # Add GPU utilization to the right axis
 fig.add_trace(trace_gpu_util, secondary_y=True)
 
-# Update layout and axis labels
+# Update layout (title, axis labels) and make background transparent
 fig.update_layout(
     title="System & GPU Memory Usage vs. GPU Utilization",
-    xaxis_title="Time (min)"
+    xaxis_title="Time (min)",
+    # Transparent backgrounds
+    paper_bgcolor="rgba(0,0,0,0)",  # outer “paper” area
+    plot_bgcolor="rgba(0,0,0,0)",   # main plot area
 )
 
-# Left y-axis: Memory in GB
+# Configure left y-axis for memory
 fig.update_yaxes(
     title_text="Memory Used (GB)",
-    secondary_y=False
+    secondary_y=False,
+    showgrid=True,             # show horizontal grid lines
+    gridcolor="lightgray",     # or any color you'd like
+    zeroline=False
 )
 
-# Right y-axis: Utilization (0–100%)
+# Configure right y-axis for GPU utilization
 fig.update_yaxes(
     title_text="GPU Utilization (%)",
     secondary_y=True,
-    range=[0, 100]
+    range=[0, 100],
+    showgrid=True,             # show horizontal grid lines
+    gridcolor="lightgray",     # match color from the other axis
+    zeroline=False
 )
 
 # Save the plot as an HTML file
 fig.write_html("plot_b256.html")
 
-# Display the interactive plot (in an interactive environment)
+# Display the interactive plot (if running interactively)
 fig.show()
