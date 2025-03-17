@@ -82,6 +82,13 @@ fig.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",   # main plot area
 )
 
+fig.update_xaxes(
+    showline=True,
+    linewidth=1,
+    linecolor="lightgray",
+    mirror=True            # Mirrors lines onto the top boundary as well
+)
+
 # Configure left y-axis for memory
 fig.update_yaxes(
     title_text="Memory Used (GB)",
@@ -94,7 +101,8 @@ fig.update_yaxes(
     ticklabelposition="outside",  # Add padding to tick labels
     ticks="outside",
     ticklen=10,
-    tickcolor="rgba(0, 0, 0, 0)"
+    tickcolor="rgba(0, 0, 0, 0)",
+    mirror = True
 )
 
 # Configure right y-axis for GPU utilization
@@ -109,14 +117,15 @@ fig.update_yaxes(
     ticklabelposition="outside",  # Add padding to tick labels
     ticks="outside",
     ticklen=10,
-    tickcolor="rgba(0, 0, 0, 0)"
+    tickcolor="rgba(0, 0, 0, 0)",
+    mirror = True
 )
 
 # Save the plot as an HTML file
 fig.write_html("plot_b32.html")
 
 # Save the plot as an PNG file
-#fig.write_image("plot_b32.png")
+fig.write_image("plot_b32.png")
 
 # Display the interactive plot (if running interactively)
 fig.show()
