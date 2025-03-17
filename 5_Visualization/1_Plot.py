@@ -89,7 +89,12 @@ fig.update_yaxes(
     range=[0,100],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # or any color you'd like
-    zeroline=False
+    zeroline=True,
+    zerolinecolor="lightgray",
+    ticklabelposition="outside",  # Add padding to tick labels
+    ticks="outside",
+    ticklen=10,
+    tickcolor="rgba(0, 0, 0, 0)"
 )
 
 # Configure right y-axis for GPU utilization
@@ -99,11 +104,19 @@ fig.update_yaxes(
     range=[0, 100],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # match color from the other axis
-    zeroline=False
+    zeroline=True,
+    zerolinecolor="lightgray",
+    ticklabelposition="outside",  # Add padding to tick labels
+    ticks="outside",
+    ticklen=10,
+    tickcolor="rgba(0, 0, 0, 0)"
 )
 
 # Save the plot as an HTML file
 fig.write_html("plot_b32.html")
+
+# Save the plot as an PNG file
+#fig.write_image("plot_b32.png")
 
 # Display the interactive plot (if running interactively)
 fig.show()
