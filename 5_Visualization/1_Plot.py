@@ -101,7 +101,7 @@ fig.update_xaxes(
     zerolinecolor="lightgray",
     ticklabelposition="outside",  # Add padding to tick labels
     ticks="outside",
-    ticklen=10,
+    ticklen=5,
     tickcolor="rgba(0, 0, 0, 0)",
     mirror = True
 )
@@ -110,14 +110,14 @@ fig.update_xaxes(
 fig.update_yaxes(
     title_text="Memory Used (GB)",
     secondary_y=False,
-    range=[-1,100],
+    range=[-1,101],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # or any color you'd like
     zeroline=True,
     zerolinecolor="lightgray",
     ticklabelposition="outside",  # Add padding to tick labels
     ticks="outside",
-    ticklen=10,
+    ticklen=5,
     tickcolor="rgba(0, 0, 0, 0)",
     mirror = True
 )
@@ -126,14 +126,14 @@ fig.update_yaxes(
 fig.update_yaxes(
     title_text="GPU Utilization (%)",
     secondary_y=True,
-    range=[-1, 100],
+    range=[-1, 101],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # match color from the other axis
     zeroline=True,
     zerolinecolor="lightgray",
     ticklabelposition="outside",  # Add padding to tick labels
     ticks="outside",
-    ticklen=10,
+    ticklen=5,
     tickcolor="rgba(0, 0, 0, 0)",
     mirror = True
 )
