@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # Read the CSV file (adjust the filename if needed)
-df = pd.read_csv("/fs/phenocart-app/prr000/Projects/Training/4_Output/compute-g6-12xlarge/system_monitor_log-g6-12xlarge.csv")
+df = pd.read_csv("/4_Output/compute-g6-12xlarge_b32/system_monitor_log-g6-12xlarge.csv")
 
 # Debug: Print the loaded column names
 print("Columns found:", df.columns.tolist())
