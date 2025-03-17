@@ -86,6 +86,7 @@ fig.update_layout(
 fig.update_yaxes(
     title_text="Memory Used (GB)",
     secondary_y=False,
+    range=[0,100],
     showgrid=True,             # show horizontal grid lines
     gridcolor="lightgray",     # or any color you'd like
     zeroline=False
