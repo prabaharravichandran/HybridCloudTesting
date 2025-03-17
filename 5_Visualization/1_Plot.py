@@ -96,7 +96,7 @@ fig.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",   # main plot area
     font=dict(
         family="Open Sans",  # or "Open Sans, sans-serif" for a fallback
-        size=22,
+        size=32,
         color="black"
     )
 )
