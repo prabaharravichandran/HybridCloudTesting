@@ -87,6 +87,8 @@ fig.add_shape(
 
 # Update layout (title, axis labels) and make background transparent
 fig.update_layout(
+    height=900,
+    width=1600,
     title="System & GPU Memory Usage vs. GPU Utilization",
     xaxis_title="Time (min)",
     # Transparent backgrounds
@@ -97,10 +99,10 @@ fig.update_layout(
 fig.update_xaxes(
     showline=True,
     zeroline=True,
-    range=[-1, max_x],
+    range=[-0.01, max_x+0.01],
     zerolinecolor="lightgray",
     ticklabelposition="outside",  # Add padding to tick labels
-    ticks="outside",
+    ticks="inside",
     ticklen=5,
     tickcolor="rgba(0, 0, 0, 0)",
     mirror = True
