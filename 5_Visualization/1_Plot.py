@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # Path to your CSV
-CSV_FILE = "/fs/phenocart-app/prr000/Projects/Training/4_Output/compute-g6-12xlarge-b32/system_monitor_log.csv"
+CSV_FILE = "/fs/phenocart-app/prr000/Projects/Training/4_Output/compute-g6-12xlarge-b256/system_monitor_log.csv"
 
 # Read the CSV file
 df = pd.read_csv(CSV_FILE)
@@ -153,10 +153,10 @@ fig.update_yaxes(
 )
 
 # Save the plot as an HTML file
-fig.write_html("plot_b32.html")
+fig.write_html("plot_b256.html")
 
 # Save the plot as an PNG file
-fig.write_image("plot_b32.png")
+fig.write_image("plot_b256.png")
 
 # Display the interactive plot (if running interactively)
 fig.show()
