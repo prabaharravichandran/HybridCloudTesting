@@ -94,6 +94,11 @@ fig.update_layout(
     # Transparent backgrounds
     paper_bgcolor="rgba(0,0,0,0)",  # outer “paper” area
     plot_bgcolor="rgba(0,0,0,0)",   # main plot area
+    font=dict(
+        family="Open Sans",  # or "Open Sans, sans-serif" for a fallback
+        size=22,
+        color="black"
+    )
 )
 
 fig.update_xaxes(
