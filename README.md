@@ -145,12 +145,12 @@ sinfo
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_job_duration.svg" alt="Plot description" style="display: block; margin: auto;">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_job_duration_min.svg" alt="Plot description" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Figure 3:  Comparison of job completion times on G5 and G6 instances across varying batch sizes.</figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_max_vram_used.svg" alt="Plot description" style="display: block; margin: auto;">
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_max_vram_used_gb.svg" alt="Plot description" style="display: block; margin: auto;">
   <figcaption style="text-align: center;">Figure 4: Comparison of total VRAM utilization on G5 and G6 instances across varying batch sizes.</figcaption>
 </figure>
 
