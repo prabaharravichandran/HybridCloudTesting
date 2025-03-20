@@ -139,13 +139,13 @@ sinfo
 # Plots comparing G5 (4 x NVIDIA A10) & G6 (4 x NVIDIA L4), each has 24GB VRAM
 
 <figure style="text-align: center;">
-  <img src="path/to/plot.svg" alt="Plot description" style="display: block; margin: auto;">
-  <figcaption>Figure 1: This is the plot caption describing the plot.</figcaption>
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_job_duration.svg" alt="Plot description" style="display: block; margin: auto;">
+  <figcaption>Figure 2:  Comparison of job completion times on G5 and G6 instances across varying batch sizes.</figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="path/to/plot.svg" alt="Plot description" style="display: block; margin: auto;">
-  <figcaption>Figure 1: This is the plot caption describing the plot.</figcaption>
+  <img src="https://prabahar.s3.ca-central-1.amazonaws.com/static/articles/HC_max_vram_used.svg" alt="Plot description" style="display: block; margin: auto;">
+  <figcaption>Figure 3: Comparison of total VRAM utilization on G5 and G6 instances across varying batch sizes.</figcaption>
 </figure>
 
 # Compute Node Specifications
