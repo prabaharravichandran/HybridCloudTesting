@@ -2,15 +2,15 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-files = ['b32',
-         'b64',
-         'b128',
+files = [#'b32',
+         #'b64',
+         #'b128',
          'b256'
          ]
 
 for file in files:
     # Path to your CSV
-    CSV_FILE = f"/fs/phenocart-app/prr000/Projects/Training/4_Output/compute-g6-12xlarge-{file}/system_monitor_log.csv"
+    CSV_FILE = f"/fs/phenocart-app/prr000/Projects/Training/4_Output/Sucessful/compute-g6-12xlarge-{file}/system_monitor_log.csv"
 
     # Read the CSV file
     df = pd.read_csv(CSV_FILE)
