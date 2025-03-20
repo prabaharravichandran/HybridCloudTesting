@@ -136,6 +136,18 @@ sbatch -p <partition> <jobscript>
 # list partition - Check instances.sinfo
 sinfo 
 ```
+# Plots comparing G5 (4 x NVIDIA A10) & G6 (4 x NVIDIA L4), each has 24GB VRAM
+
+<figure style="text-align: center;">
+  <img src="path/to/plot.svg" alt="Plot description" style="display: block; margin: auto;">
+  <figcaption>Figure 1: This is the plot caption describing the plot.</figcaption>
+</figure>
+
+<figure style="text-align: center;">
+  <img src="path/to/plot.svg" alt="Plot description" style="display: block; margin: auto;">
+  <figcaption>Figure 1: This is the plot caption describing the plot.</figcaption>
+</figure>
+
 # Compute Node Specifications
 
 | Partition               | Instance Type  | vCPUs | Memory  | GPU                                    | Storage  | Networking   | Use Cases |

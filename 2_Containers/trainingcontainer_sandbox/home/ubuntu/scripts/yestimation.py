@@ -992,7 +992,7 @@ for repetition in range(1, 3):
                 y_chunk_yield_val,
             ),
             epochs=100,
-            batch_size=512,
+            batch_size=1,
             callbacks=[early_stopping],
             verbose=1
         )
