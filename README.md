@@ -16,6 +16,7 @@ Defs, makefile and bash scripts for creating containers are located here, 2_Cont
 Based on ubuntu24.04 image; we'll install nvidia-cuda-tool, mongodb, python 2.18, tensorflow 2.18 along with all the other dependencies.
 
 for mongodb, opencv(need some dependencies when installed over ubuntu 24.04), and nvidia toolkit
+
 ```text
 apt-get install gnupg curl
 curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
