@@ -131,8 +131,12 @@ mongorestore --host localhost --port 27018 --username '<username>' --password '<
 #Interactive session
 srun -p <partition> --pty bash -i
 
+srun -p compute-g6-xlarge --pty bash -i
+
 #Submit job
 sbatch -p <partition> <jobscript>
+
+sbatch -p compute-g6-xlarge 
 
 # list partition - Check instances.sinfo
 sinfo 

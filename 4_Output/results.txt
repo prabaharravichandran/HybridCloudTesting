@@ -1,0 +1,547 @@
+is:/fs/phenocart-app/prr000/Projects/SegmentAnything$ sbatch -p compute-g6-xlarge Train.sh
+Submitted batch job 51
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                51 compute-g Train.sh   prr000 CF       0:13      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                51 compute-g Train.sh   prr000 CF       0:54      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                51 compute-g Train.sh   prr000  R       0:01      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                51 compute-g Train.sh   prr000  R       0:03      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ sbatch -p compute-g6-xlarge Train.sh
+Submitted batch job 52
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                52 compute-g Train.sh   prr000  R       0:45      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                52 compute-g Train.sh   prr000  R       0:57      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                52 compute-g Train.sh   prr000  R       1:28      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ scancel 52
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ srun -p compute-g6-xlarge --pty bash -i
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything$ export TMPDIR=/tmp
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything$ apptainer exec \
+    --nv \
+    --fakeroot \
+    --bind /fs:/mnt \
+    --contain \
+    --no-home \
+    segmentanything_sandbox \
+    /bin/bash -c ". /home/venv/bin/activate && python /home/ubuntu/scripts/finetunesam.py"
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+FATAL:   While checking container encryption: could not open image /fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything_sandbox: failed to retrieve path for /fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything_sandbox: lstat /fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything_sandbox: no such file or directory
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything$ cd segmentanything/
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ apptainer exec     --nv     --fakeroot     --bind /fs:/mnt     --contain     --no-home     segmentanything_sandbox     /bin/bash -c ". /home/venv/bin/activate && python /home/ubuntu/scripts/finetunesam.py"
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+Epoch [1/1000], Loss: 0.6887
+^CTraceback (most recent call last):
+  File "/home/ubuntu/scripts/finetunesam.py", line 96, in <module>
+    features = sam.image_encoder(images)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/segment_anything/modeling/image_encoder.py", line 112, in forward
+    x = blk(x)
+        ^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/segment_anything/modeling/image_encoder.py", line 174, in forward
+    x = self.attn(x)
+        ^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/segment_anything/modeling/image_encoder.py", line 234, in forward
+    attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, (H, W), (H, W))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/segment_anything/modeling/image_encoder.py", line 350, in add_decomposed_rel_pos
+    Rw = get_rel_pos(q_w, k_w, rel_pos_w)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/segment_anything/modeling/image_encoder.py", line 292, in get_rel_pos
+    def get_rel_pos(q_size: int, k_size: int, rel_pos: torch.Tensor) -> torch.Tensor:
+
+KeyboardInterrupt
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ exit
+exit
+srun: error: compute-g6-xlarge-000: task 0: Exited with exit code 130
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ cd segmentanything/
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ srun -p compute-g6-xlarge --pty bash -i
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ apptainer exec \
+    --writable \
+    --fakeroot \
+    --bind /fs:/mnt \
+    --contain \
+    --no-home \
+    segmentanything_sandbox \
+> exit
+^C
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ apptainer shell     --writable     --fakeroot     --bind /fs:/mnt     --contain     --no-home     segmentanything_sandbox
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+Apptainer> . /home/venv/bin/activate
+(venv) Apptainer> python /home/ubuntu/scripts/finetunesam.py
+Starting system monitoring...
+Monitoring script started successfully, running in the background.
+Killed
+(venv) Apptainer> exit
+exit
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ exit
+exit
+srun: error: compute-g6-xlarge-000: task 0: Exited with exit code 137
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ sbatch -p compute-g6-xlarge Train.sh
+sbatch: error: Unable to open file Train.sh
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ cd ..
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ sbatch -p compute-g6-xlarge Train.sh
+Submitted batch job 55
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ squeue -u prr000
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+                55 compute-g Train.sh   prr000  R       1:08      1 compute-g6-xlarge-000
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ scancel 55
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything$ cd segmentanything/
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ srun -p compute-g6-xlarge --pty bash -i
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ export TMPDIR=/tmp
+
+# Use apptainer exec to run your commands inside the container.
+apptainer exec \
+    --nv \
+    --fakeroot \
+    --bind /fs:/mnt \
+    --contain \
+    --no-home \
+    /bin/bash -c ". /home/venv/bin/activate && python /home/ubuntu/scripts/finetunesam.py"
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+Starting system monitoring...
+Monitoring script started successfully, running in the background.
+Epoch [1/1000], Loss: 0.6751
+Epoch [2/1000], Loss: 0.6689
+Epoch [3/1000], Loss: 0.6627
+Epoch [4/1000], Loss: 0.6565
+Epoch [5/1000], Loss: 0.6505
+Epoch [6/1000], Loss: 0.6446
+Epoch [7/1000], Loss: 0.6387
+Epoch [8/1000], Loss: 0.6329
+Epoch [9/1000], Loss: 0.6273
+Epoch [10/1000], Loss: 0.6218
+Epoch [11/1000], Loss: 0.6163
+Epoch [12/1000], Loss: 0.6109
+Epoch [13/1000], Loss: 0.6056
+Epoch [14/1000], Loss: 0.6004
+Epoch [15/1000], Loss: 0.5953
+Epoch [16/1000], Loss: 0.5901
+Epoch [17/1000], Loss: 0.5853
+Epoch [18/1000], Loss: 0.5804
+Epoch [19/1000], Loss: 0.5756
+Epoch [20/1000], Loss: 0.5709
+Epoch [21/1000], Loss: 0.5663
+Epoch [22/1000], Loss: 0.5617
+Epoch [23/1000], Loss: 0.5572
+Epoch [24/1000], Loss: 0.5528
+Epoch [25/1000], Loss: 0.5485
+Epoch [26/1000], Loss: 0.5442
+Epoch [27/1000], Loss: 0.5400
+Epoch [28/1000], Loss: 0.5359
+Epoch [29/1000], Loss: 0.5319
+Epoch [30/1000], Loss: 0.5279
+Epoch [31/1000], Loss: 0.5240
+Epoch [32/1000], Loss: 0.5201
+Epoch [33/1000], Loss: 0.5164
+Epoch [34/1000], Loss: 0.5126
+Epoch [35/1000], Loss: 0.5089
+Epoch [36/1000], Loss: 0.5053
+Epoch [37/1000], Loss: 0.5018
+Epoch [38/1000], Loss: 0.4982
+Epoch [39/1000], Loss: 0.4948
+Epoch [40/1000], Loss: 0.4914
+Epoch [41/1000], Loss: 0.4881
+Epoch [42/1000], Loss: 0.4848
+Epoch [43/1000], Loss: 0.4816
+Epoch [44/1000], Loss: 0.4784
+Epoch [45/1000], Loss: 0.4753
+Epoch [46/1000], Loss: 0.4722
+Epoch [47/1000], Loss: 0.4692
+Epoch [48/1000], Loss: 0.4663
+Epoch [49/1000], Loss: 0.4633
+Epoch [50/1000], Loss: 0.4604
+Epoch [51/1000], Loss: 0.4576
+Epoch [52/1000], Loss: 0.4548
+Epoch [53/1000], Loss: 0.4521
+Epoch [54/1000], Loss: 0.4493
+Epoch [55/1000], Loss: 0.4467
+Epoch [56/1000], Loss: 0.4440
+Epoch [57/1000], Loss: 0.4414
+Epoch [58/1000], Loss: 0.4389
+Epoch [59/1000], Loss: 0.4364
+Epoch [60/1000], Loss: 0.4339
+Epoch [61/1000], Loss: 0.4315
+Epoch [62/1000], Loss: 0.4291
+Epoch [63/1000], Loss: 0.4267
+Epoch [64/1000], Loss: 0.4244
+Epoch [65/1000], Loss: 0.4221
+Epoch [66/1000], Loss: 0.4198
+Epoch [67/1000], Loss: 0.4176
+Epoch [68/1000], Loss: 0.4154
+Epoch [69/1000], Loss: 0.4132
+Epoch [70/1000], Loss: 0.4111
+Epoch [71/1000], Loss: 0.4090
+Epoch [72/1000], Loss: 0.4069
+Epoch [73/1000], Loss: 0.4048
+Epoch [74/1000], Loss: 0.4028
+Epoch [75/1000], Loss: 0.4008
+Epoch [76/1000], Loss: 0.3988
+Epoch [77/1000], Loss: 0.3969
+Epoch [78/1000], Loss: 0.3950
+Epoch [79/1000], Loss: 0.3931
+Epoch [80/1000], Loss: 0.3912
+Epoch [81/1000], Loss: 0.3894
+Epoch [82/1000], Loss: 0.3876
+Epoch [83/1000], Loss: 0.3858
+Epoch [84/1000], Loss: 0.3840
+Epoch [85/1000], Loss: 0.3823
+Epoch [86/1000], Loss: 0.3805
+Epoch [87/1000], Loss: 0.3788
+Epoch [88/1000], Loss: 0.3772
+Epoch [89/1000], Loss: 0.3755
+Epoch [90/1000], Loss: 0.3739
+Epoch [91/1000], Loss: 0.3722
+Epoch [92/1000], Loss: 0.3706
+Epoch [93/1000], Loss: 0.3690
+Epoch [94/1000], Loss: 0.3675
+Epoch [95/1000], Loss: 0.3659
+Epoch [96/1000], Loss: 0.3644
+Epoch [97/1000], Loss: 0.3629
+Epoch [98/1000], Loss: 0.3614
+Epoch [99/1000], Loss: 0.3599
+Epoch [100/1000], Loss: 0.3585
+Saved checkpoint to /mnt/phenocart-app/prr000/Projects/SegmentAnything/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints/finetuned_sam_epoch100.pth
+Epoch [101/1000], Loss: 0.3570
+Epoch [102/1000], Loss: 0.3556
+Epoch [103/1000], Loss: 0.3542
+Epoch [104/1000], Loss: 0.3528
+Epoch [105/1000], Loss: 0.3514
+Epoch [106/1000], Loss: 0.3501
+Epoch [107/1000], Loss: 0.3487
+Epoch [108/1000], Loss: 0.3474
+Epoch [109/1000], Loss: 0.3461
+Epoch [110/1000], Loss: 0.3448
+Epoch [111/1000], Loss: 0.3435
+Epoch [112/1000], Loss: 0.3422
+Epoch [113/1000], Loss: 0.3409
+Epoch [114/1000], Loss: 0.3397
+Epoch [115/1000], Loss: 0.3384
+Epoch [116/1000], Loss: 0.3372
+Epoch [117/1000], Loss: 0.3360
+Epoch [118/1000], Loss: 0.3348
+Epoch [119/1000], Loss: 0.3336
+Epoch [120/1000], Loss: 0.3324
+Epoch [121/1000], Loss: 0.3312
+Epoch [122/1000], Loss: 0.3301
+Epoch [123/1000], Loss: 0.3289
+Epoch [124/1000], Loss: 0.3278
+Epoch [125/1000], Loss: 0.3267
+Epoch [126/1000], Loss: 0.3256
+Epoch [127/1000], Loss: 0.3245
+Epoch [128/1000], Loss: 0.3234
+Epoch [129/1000], Loss: 0.3223
+Epoch [130/1000], Loss: 0.3212
+Epoch [131/1000], Loss: 0.3202
+Epoch [132/1000], Loss: 0.3191
+Epoch [133/1000], Loss: 0.3181
+Epoch [134/1000], Loss: 0.3170
+Epoch [135/1000], Loss: 0.3160
+Epoch [136/1000], Loss: 0.3150
+Epoch [137/1000], Loss: 0.3140
+Epoch [138/1000], Loss: 0.3130
+Epoch [139/1000], Loss: 0.3120
+Epoch [140/1000], Loss: 0.3110
+Epoch [141/1000], Loss: 0.3100
+Epoch [142/1000], Loss: 0.3090
+Epoch [143/1000], Loss: 0.3081
+Epoch [144/1000], Loss: 0.3071
+Epoch [145/1000], Loss: 0.3062
+Epoch [146/1000], Loss: 0.3052
+Epoch [147/1000], Loss: 0.3043
+Epoch [148/1000], Loss: 0.3034
+Epoch [149/1000], Loss: 0.3025
+Epoch [150/1000], Loss: 0.3016
+Epoch [151/1000], Loss: 0.3006
+Epoch [152/1000], Loss: 0.2998
+Epoch [153/1000], Loss: 0.2989
+Epoch [154/1000], Loss: 0.2980
+Epoch [155/1000], Loss: 0.2971
+Epoch [156/1000], Loss: 0.2962
+Epoch [157/1000], Loss: 0.2954
+Epoch [158/1000], Loss: 0.2945
+Epoch [159/1000], Loss: 0.2937
+Epoch [160/1000], Loss: 0.2928
+Epoch [161/1000], Loss: 0.2920
+Epoch [162/1000], Loss: 0.2912
+Epoch [163/1000], Loss: 0.2903
+Epoch [164/1000], Loss: 0.2895
+Epoch [165/1000], Loss: 0.2887
+Epoch [166/1000], Loss: 0.2879
+Epoch [167/1000], Loss: 0.2871
+Epoch [168/1000], Loss: 0.2863
+Epoch [169/1000], Loss: 0.2855
+Epoch [170/1000], Loss: 0.2847
+Epoch [171/1000], Loss: 0.2839
+Epoch [172/1000], Loss: 0.2832
+Epoch [173/1000], Loss: 0.2824
+Epoch [174/1000], Loss: 0.2816
+Epoch [175/1000], Loss: 0.2808
+Epoch [176/1000], Loss: 0.2801
+Epoch [177/1000], Loss: 0.2793
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-compute-g6-xlarge-000: error: *** STEP 56.0 ON compute-g6-xlarge-000 CANCELLED AT 2025-03-21T05:24:16 DUE TO TIME LIMIT ***
+Epoch [178/1000], Loss: 0.2786
+srun: error: compute-g6-xlarge-000: task 0: Killed
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ sinfo
+PARTITION            AVAIL  TIMELIMIT  NODES  STATE NODELIST
+compute-g5-xlarge       up    3:00:00      2  idle~ compute-g5-xlarge-[000-001]
+compute-g5-12xlarge     up    1:00:00      1  idle~ compute-g5-12xlarge-000
+compute-g6-xlarge       up    3:00:00      2  idle~ compute-g6-xlarge-[000-001]
+compute-g6-12xlarge     up    1:00:00      1  idle~ compute-g6-12xlarge-000
+compute-m6i-large       up      30:00      2  idle~ compute-m6i-large-[000-001]
+compute-t3-2xlarge      up    1:00:00      3  idle~ compute-t3-2xlarge-[000-002]
+compute-t3-large        up    1:00:00      3  idle~ compute-t3-large-[000-002]
+compute-t3-xlarge       up    1:00:00      3  idle~ compute-t3-xlarge-[000-002]
+scompute-g5-xlarge      up    3:00:00      2  idle~ scompute-g5-xlarge-[000-001]
+scompute-g5-12xlarge    up    2:00:00      1  idle~ scompute-g5-12xlarge-000
+scompute-g6-xlarge      up    3:00:00      2  idle~ scompute-g6-xlarge-[000-001]
+scompute-g6-12xlarge    up    2:00:00      1  idle~ scompute-g6-12xlarge-000
+scompute-m6i-large      up      30:00      2  idle~ scompute-m6i-large-[000-001]
+scompute-t3-2xlarge     up    1:00:00      3  idle~ scompute-t3-2xlarge-[000-002]
+scompute-t3-large*      up    1:00:00      3  idle~ scompute-t3-large-[000-002]
+scompute-t3-xlarge      up    1:00:00      3  idle~ scompute-t3-xlarge-[000-002]
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ srun -p compute-g6-xlarge --pty bash -i
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ export TMPDIR=/tmp
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ apptainer exec     --nv     --fakeroot     --bind /fs:/mnt     --contain     --no-home     segmentanything_sandbox     /bin/bash -c ". /home/venv/bin/activate && python /home/ubuntu/scripts/finetunesam.py"
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+Starting system monitoring...
+Monitoring script started successfully, running in the background.
+Traceback (most recent call last):
+  File "/home/ubuntu/scripts/finetunesam.py", line 141, in <module>
+    features = sam.image_encoder(images)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1928, in __getattr__
+    raise AttributeError(
+AttributeError: 'DataParallel' object has no attribute 'image_encoder'
+prr000@compute-g6-xlarge-000:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$ apptainer exec     --nv     --fakeroot     --bind /fs:/mnt     --contain     --no-home     segmentanything_sandbox     /bin/bash -c ". /home/venv/bin/activate && python /home/ubuntu/scripts/finetunesam.py"
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    User not listed in /etc/subuid, trying root-mapped namespace
+INFO:    /etc/singularity/ exists; cleanup by system administrator is not complete (see https://apptainer.org/docs/admin/latest/singularity_migration.html)
+INFO:    Using fakeroot command combined with root-mapped namespace
+Starting system monitoring...
+Monitoring script started successfully, running in the background.
+Epoch [1/1000], Loss: 0.7234
+Epoch [2/1000], Loss: 0.7165
+Epoch [3/1000], Loss: 0.7098
+Epoch [4/1000], Loss: 0.7032
+Epoch [5/1000], Loss: 0.6966
+Epoch [6/1000], Loss: 0.6903
+Epoch [7/1000], Loss: 0.6839
+Epoch [8/1000], Loss: 0.6777
+Epoch [9/1000], Loss: 0.6715
+Epoch [10/1000], Loss: 0.6654
+Epoch [11/1000], Loss: 0.6596
+Epoch [12/1000], Loss: 0.6536
+Epoch [13/1000], Loss: 0.6478
+Epoch [14/1000], Loss: 0.6423
+Epoch [15/1000], Loss: 0.6365
+Epoch [16/1000], Loss: 0.6311
+Epoch [17/1000], Loss: 0.6256
+Epoch [18/1000], Loss: 0.6203
+Epoch [19/1000], Loss: 0.6151
+Epoch [20/1000], Loss: 0.6098
+Epoch [21/1000], Loss: 0.6048
+Epoch [22/1000], Loss: 0.5998
+Epoch [23/1000], Loss: 0.5949
+Epoch [24/1000], Loss: 0.5900
+Epoch [25/1000], Loss: 0.5852
+Epoch [26/1000], Loss: 0.5805
+Epoch [27/1000], Loss: 0.5758
+Epoch [28/1000], Loss: 0.5712
+Epoch [29/1000], Loss: 0.5668
+Epoch [30/1000], Loss: 0.5624
+Epoch [31/1000], Loss: 0.5580
+Epoch [32/1000], Loss: 0.5536
+Epoch [33/1000], Loss: 0.5495
+Epoch [34/1000], Loss: 0.5453
+Epoch [35/1000], Loss: 0.5413
+Epoch [36/1000], Loss: 0.5372
+Epoch [37/1000], Loss: 0.5333
+Epoch [38/1000], Loss: 0.5294
+Epoch [39/1000], Loss: 0.5255
+Epoch [40/1000], Loss: 0.5218
+Epoch [41/1000], Loss: 0.5181
+Epoch [42/1000], Loss: 0.5144
+Epoch [43/1000], Loss: 0.5108
+Epoch [44/1000], Loss: 0.5073
+Epoch [45/1000], Loss: 0.5038
+Epoch [46/1000], Loss: 0.5004
+Epoch [47/1000], Loss: 0.4970
+Epoch [48/1000], Loss: 0.4937
+Epoch [49/1000], Loss: 0.4904
+Epoch [50/1000], Loss: 0.4872
+Epoch [51/1000], Loss: 0.4840
+Epoch [52/1000], Loss: 0.4808
+Epoch [53/1000], Loss: 0.4778
+Epoch [54/1000], Loss: 0.4748
+Epoch [55/1000], Loss: 0.4717
+Epoch [56/1000], Loss: 0.4688
+Epoch [57/1000], Loss: 0.4659
+Epoch [58/1000], Loss: 0.4631
+Epoch [59/1000], Loss: 0.4603
+Epoch [60/1000], Loss: 0.4575
+Epoch [61/1000], Loss: 0.4547
+Epoch [62/1000], Loss: 0.4520
+Epoch [63/1000], Loss: 0.4494
+Epoch [64/1000], Loss: 0.4468
+Epoch [65/1000], Loss: 0.4442
+Epoch [66/1000], Loss: 0.4417
+Epoch [67/1000], Loss: 0.4392
+Epoch [68/1000], Loss: 0.4367
+Epoch [69/1000], Loss: 0.4343
+Epoch [70/1000], Loss: 0.4319
+Epoch [71/1000], Loss: 0.4296
+Epoch [72/1000], Loss: 0.4273
+Epoch [73/1000], Loss: 0.4249
+Epoch [74/1000], Loss: 0.4227
+Epoch [75/1000], Loss: 0.4204
+Epoch [76/1000], Loss: 0.4182
+Epoch [77/1000], Loss: 0.4161
+Epoch [78/1000], Loss: 0.4139
+Epoch [79/1000], Loss: 0.4118
+Epoch [80/1000], Loss: 0.4098
+Epoch [81/1000], Loss: 0.4077
+Epoch [82/1000], Loss: 0.4056
+Epoch [83/1000], Loss: 0.4036
+Epoch [84/1000], Loss: 0.4017
+Epoch [85/1000], Loss: 0.3997
+Epoch [86/1000], Loss: 0.3978
+Epoch [87/1000], Loss: 0.3959
+Epoch [88/1000], Loss: 0.3940
+Epoch [89/1000], Loss: 0.3922
+Epoch [90/1000], Loss: 0.3903
+Epoch [91/1000], Loss: 0.3885
+Epoch [92/1000], Loss: 0.3868
+Epoch [93/1000], Loss: 0.3850
+Epoch [94/1000], Loss: 0.3832
+Epoch [95/1000], Loss: 0.3815
+Epoch [96/1000], Loss: 0.3798
+Epoch [97/1000], Loss: 0.3782
+Epoch [98/1000], Loss: 0.3765
+Epoch [99/1000], Loss: 0.3749
+Epoch [100/1000], Loss: 0.3733
+Saved checkpoint to /mnt/phenocart-app/prr000/Projects/SegmentAnything/segmentanything/segmentanything_sandbox/home/ubuntu/model_checkpoints/finetuned_sam_epoch100.pth
+Epoch [101/1000], Loss: 0.3717
+Epoch [102/1000], Loss: 0.3702
+Epoch [103/1000], Loss: 0.3686
+Epoch [104/1000], Loss: 0.3670
+Epoch [105/1000], Loss: 0.3655
+Epoch [106/1000], Loss: 0.3640
+Epoch [107/1000], Loss: 0.3625
+Epoch [108/1000], Loss: 0.3610
+Epoch [109/1000], Loss: 0.3596
+Epoch [110/1000], Loss: 0.3582
+Epoch [111/1000], Loss: 0.3567
+Epoch [112/1000], Loss: 0.3554
+Epoch [113/1000], Loss: 0.3539
+Epoch [114/1000], Loss: 0.3526
+Epoch [115/1000], Loss: 0.3512
+Epoch [116/1000], Loss: 0.3499
+Epoch [117/1000], Loss: 0.3485
+Epoch [118/1000], Loss: 0.3472
+Epoch [119/1000], Loss: 0.3459
+Epoch [120/1000], Loss: 0.3446
+Epoch [121/1000], Loss: 0.3434
+Epoch [122/1000], Loss: 0.3421
+Epoch [123/1000], Loss: 0.3408
+Epoch [124/1000], Loss: 0.3396
+Epoch [125/1000], Loss: 0.3384
+Epoch [126/1000], Loss: 0.3372
+Epoch [127/1000], Loss: 0.3360
+Epoch [128/1000], Loss: 0.3348
+Epoch [129/1000], Loss: 0.3336
+Epoch [130/1000], Loss: 0.3324
+Epoch [131/1000], Loss: 0.3313
+Epoch [132/1000], Loss: 0.3301
+Epoch [133/1000], Loss: 0.3290
+Epoch [134/1000], Loss: 0.3279
+Epoch [135/1000], Loss: 0.3268
+Epoch [136/1000], Loss: 0.3257
+Epoch [137/1000], Loss: 0.3246
+Epoch [138/1000], Loss: 0.3235
+Epoch [139/1000], Loss: 0.3224
+Epoch [140/1000], Loss: 0.3213
+Epoch [141/1000], Loss: 0.3203
+Epoch [142/1000], Loss: 0.3192
+Epoch [143/1000], Loss: 0.3182
+Epoch [144/1000], Loss: 0.3172
+Epoch [145/1000], Loss: 0.3162
+Epoch [146/1000], Loss: 0.3151
+Epoch [147/1000], Loss: 0.3141
+Epoch [148/1000], Loss: 0.3131
+Epoch [149/1000], Loss: 0.3122
+Epoch [150/1000], Loss: 0.3112
+Epoch [151/1000], Loss: 0.3102
+Epoch [152/1000], Loss: 0.3093
+Epoch [153/1000], Loss: 0.3083
+Epoch [154/1000], Loss: 0.3074
+Epoch [155/1000], Loss: 0.3064
+Epoch [156/1000], Loss: 0.3055
+Epoch [157/1000], Loss: 0.3046
+Epoch [158/1000], Loss: 0.3036
+Epoch [159/1000], Loss: 0.3027
+Epoch [160/1000], Loss: 0.3018
+Epoch [161/1000], Loss: 0.3009
+Epoch [162/1000], Loss: 0.3001
+Epoch [163/1000], Loss: 0.2992
+Epoch [164/1000], Loss: 0.2983
+Epoch [165/1000], Loss: 0.2974
+Epoch [166/1000], Loss: 0.2966
+Epoch [167/1000], Loss: 0.2957
+Epoch [168/1000], Loss: 0.2948
+Epoch [169/1000], Loss: 0.2940
+Epoch [170/1000], Loss: 0.2932
+Epoch [171/1000], Loss: 0.2923
+Epoch [172/1000], Loss: 0.2915
+Epoch [173/1000], Loss: 0.2907
+slurmstepd-compute-g6-xlarge-000: error: *** STEP 57.0 ON compute-g6-xlarge-000 CANCELLED AT 2025-03-21T13:22:33 DUE TO TIME LIMIT ***
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compute-g6-xlarge-000: task 0: Killed
+prr000@vis:/fs/phenocart-app/prr000/Projects/SegmentAnything/segmentanything$
